@@ -1,26 +1,31 @@
-import FeaturedCourses from "@/components/FeaturedCourses";
-import Footer from "@/components/Footer";
-import Herosection from "@/components/Herosection";
-import InstructorsComponent from "@/components/InstructorsComponent";
-import ReviewCardComponent from "@/components/ReviewCardComponent";
-import ServisesComponent from "@/components/ServisesComponent";
-import StickyScrollRevealComponent from "@/components/StickyScrollRevealComponent";
+"use client";
 
+import { navItems } from "../data";
 
-export default function Home() {
+import Hero from "../components/Hero";
+import Grid from "../components/Grid";
+import Footer from "../components/Footer";
+// import Clients from "@/components/Clients";
+import Approach from "../components/Approach";
+import Experience from "../components/Experience";
+import RecentProjects from "../components/RecentProjects";
+import { FloatingNav } from "../components/ui/FloatingNavbar";
+
+const Home = () => {
   return (
-<>
-<main className="min-h-screen dark:bg-black   dark:bg-dot-white/[0.2]  antialiased bg-grid-white/[0.02]">
-
-<Herosection/>
-<FeaturedCourses />
-<StickyScrollRevealComponent/>
-<ReviewCardComponent/>
-<ServisesComponent/>
-<InstructorsComponent/>
-<Footer/>
-</main>
-</>
-   
+    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
+      <div className="max-w-7xl w-full">
+        <FloatingNav navItems={navItems} className={undefined} />
+        <Hero />
+        <Grid />
+        <RecentProjects />
+        {/* <Clients /> */}
+        <Experience />
+        <Approach />
+        <Footer />
+      </div>
+    </main>
   );
-}
+};
+
+export default Home;
