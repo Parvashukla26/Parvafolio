@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import {  testimonials } from "@/data";
+import {  testimonials } from "../data";
 import { InfiniteMovingCards } from "./ui/InfiniteCards";
 
 const Clients = () => {
