@@ -2,6 +2,9 @@
 import { cn } from "../../lib/utils";
 import { useEffect, useRef, useState } from "react";
 
+const [isClient, setIsClient] = useState(false);
+
+
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
@@ -40,6 +43,7 @@ export const BackgroundGradientAnimation = ({
   const [tgX, setTgX] = useState(0);
   const [tgY, setTgY] = useState(0);
   useEffect(() => {
+    setIsClient(true);
     document.body.style.setProperty(
       "--gradient-background-start",
       gradientBackgroundStart
