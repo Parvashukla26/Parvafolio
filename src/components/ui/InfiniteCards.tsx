@@ -2,7 +2,7 @@
 
 import { cn } from "../../lib/utils";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
@@ -24,8 +24,15 @@ export const InfiniteMovingCards = ({
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    addAnimation();
+    let isMounted = true;
+    if (typeof window !== "undefined" && isMounted) {
+      addAnimation();
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
+  
   const [start, setStart] = useState(false);
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
@@ -107,7 +114,7 @@ export const InfiniteMovingCards = ({
             <blockquote>
               <div
                 aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
+                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%+_4px)] w-[calc(100%+_4px)]"
               ></div>
               {/* change text color, text-lg */}
               <span className=" relative z-20 text-sm md:text-lg leading-[1.6] text-white font-normal">
@@ -116,7 +123,7 @@ export const InfiniteMovingCards = ({
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 {/* add this div for the profile img */}
                 <div className="me-3">
-                  <Image src="/profile.svg" alt="profile" />
+                  <img src="/profile.svg" alt="profile" />
                 </div>
                 <span className="flex flex-col gap-1">
                   {/* change text color, font-normal to font-bold, text-xl */}
